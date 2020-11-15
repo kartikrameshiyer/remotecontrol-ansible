@@ -9,20 +9,22 @@ defaults: &defaults
   docker:
     - image: amazon/aws-cli
 # Orchestrate or schedule a set of jobs
-workflows:
+jobs:
   # Name the workflow "welcome"
   createinfrastructure:
     <<: *defaults
     steps:
       - checkout
-      - command: |
-          aws cloudformation create-stack \
-          --stack-name deploy\
-          --template-body template.yml\
-          --region=us-west-2 \
-          --capabilities CAPABILITY_NAMED_IAM
+      - run:
+          name: creating backend infrastructure
+          command: |
+            aws cloudformation create-stack \
+            --stack-name deploy\
+            --template-body template.yml\
+            --region=us-west-2 \
 
-  welcome:
+workflows:
+  my_workflow:
     # Run the welcome/run job in its own container
     jobs:
       - createinfrastructure
