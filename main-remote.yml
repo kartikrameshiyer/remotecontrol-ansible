@@ -1,0 +1,6 @@
+- name: Exercise to setting up a webserver in an EC2
+  hosts: all
+  user: ubuntu
+  roles:
+    - setup
+# Command to trigger ansible.  ansible-playbook main-remote.yml -i inventory --private-key ~/udacity.pem
