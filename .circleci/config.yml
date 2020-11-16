@@ -16,7 +16,7 @@ jobs:
       - run:
           name: configure server
           command: |
-            ansible-playbook -i inventory.txt main-remote.yml
+            ansible-playbook -i /Users/kartik/Documents/Udacity/remotecontrol-ansible/inventory main-remote.yml
 workflows:
   my_workflow:
     jobs:
